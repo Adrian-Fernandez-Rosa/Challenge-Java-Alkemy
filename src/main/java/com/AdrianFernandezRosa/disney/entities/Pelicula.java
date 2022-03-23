@@ -1,6 +1,7 @@
 package com.AdrianFernandezRosa.disney.entities;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,8 @@ public class Pelicula {
     @OneToOne
     private Imagen imagen;
     private String titulo;
-    private String fechaCreacion;
+    @Temporal(TemporalType.DATE)
+    private Date fechaCreacion;
     private Integer calificacion;
 
     @OneToMany
@@ -21,21 +23,12 @@ public class Pelicula {
     public Pelicula() {
     }
 
-    public Pelicula( Imagen imagen, String titulo, String fechaCreacion, Integer calificacion, List<Personaje> personajesAsociados) {
-
+    public Pelicula(Imagen imagen, String titulo, Date fechaCreacion, Integer calificacion, List<Personaje> personajesAsociados) {
         this.imagen = imagen;
         this.titulo = titulo;
         this.fechaCreacion = fechaCreacion;
         this.calificacion = calificacion;
         this.personajesAsociados = personajesAsociados;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Imagen getImagen() {
@@ -54,11 +47,11 @@ public class Pelicula {
         this.titulo = titulo;
     }
 
-    public String getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
