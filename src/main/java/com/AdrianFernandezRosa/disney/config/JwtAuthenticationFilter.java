@@ -35,30 +35,32 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         String header = req.getHeader(HEADER_STRING);
-        String username = null;
+        String email = null;
         String authToken = null;
+
         if (header != null && header.startsWith(TOKEN_PREFIX)) {
             authToken = header.replace(TOKEN_PREFIX,"");
             try {
-                username = jwtTokenUtil.getUsernameFromToken(authToken);
+                email = jwtTokenUtil.getUsernameFromToken(authToken);
             } catch (IllegalArgumentException e) {
-                logger.error("Se produjo un error al obtener el nombre de usuario del token ", e);
+                logger.error("Se produjo un error al obtener el email de usuario del token ", e);
             } catch (ExpiredJwtException e) {
                 logger.warn("token expirado", e);
             } catch(SignatureException e){
-                logger.error("login fallo, usuario o password erroneso.");
+                logger.error("login fallo, usuario o password erróneo.");
             }
-        } else {
-            logger.warn("Couldn't find bearer string, header will be ignored");
-        }
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        } else {
+            logger.warn("No se pudo encontrar el string portador");
+        }
+        if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+            UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
             if (jwtTokenUtil.validateToken(authToken, userDetails)) {
                 UsernamePasswordAuthenticationToken authentication = jwtTokenUtil.getAuthenticationToken(authToken, SecurityContextHolder.getContext().getAuthentication(), userDetails);
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
-                logger.info("authenticated user " + username + ", setting security context");
+                logger.info("email autenticado" + email + ", setting SECURITY context");
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }

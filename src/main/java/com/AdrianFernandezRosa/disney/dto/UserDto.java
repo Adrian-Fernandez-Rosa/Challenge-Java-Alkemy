@@ -3,26 +3,28 @@ package com.AdrianFernandezRosa.disney.dto;
 
 import com.AdrianFernandezRosa.disney.entities.User;
 
-//los dto no llevan anotaciones
 public class UserDto {
 
     private String email;
     private String password;
-    private String name;
+    private String nombreCompleto;
 
 
     public UserDto() {
     }
 
+    public UserDto(String email, String password, String nombreCompleto) {
+        this.email = email;
+        this.password = password;
+        this.nombreCompleto = nombreCompleto;
+    }
+
     public User getUserFromDto(){
         User user = new User();
-
-        user.setPassword(password);
         user.setEmail(email);
-        user.setNombreCompleto(name);
+        user.setPassword(password);
+        user.setNombreCompleto(nombreCompleto);
 
-
-        
         return user;
     }
 
@@ -42,11 +44,11 @@ public class UserDto {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 }

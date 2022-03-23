@@ -9,18 +9,18 @@ public class Role {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
-    @Column
+
     private String name;
 
-    @Column
-    private String description;
+
+    private String descripcion;
 
     public Role() {
     }
 
     public Role(String name, String description) {
         this.name = name;
-        this.description = description;
+        this.descripcion = description;
     }
 
     public long getId() {
@@ -39,11 +39,11 @@ public class Role {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescripcion(String description) {
+        this.descripcion = description;
     }
 }

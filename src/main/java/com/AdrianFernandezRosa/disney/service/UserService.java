@@ -8,7 +8,7 @@ import com.AdrianFernandezRosa.disney.entities.User;
 import java.util.List;
 
 public interface UserService {
-    User save(UserDto user) throws Exception;
+    User save(UserDto user) ;
 
     User findOne(String email);
 }
