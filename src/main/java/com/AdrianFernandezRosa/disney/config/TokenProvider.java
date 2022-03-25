@@ -28,7 +28,7 @@ public class TokenProvider implements Serializable {
     @Value("${jwt.authorities.key}")
     public String AUTHORITIES_KEY;
 
-    public String getUsernameFromToken(String token) {
+    public String getEmailFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
@@ -57,6 +57,8 @@ public class TokenProvider implements Serializable {
          String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
+        System.out.println("autorizacion"+authorities);
+
 
         return Jwts.builder()
                 .setSubject(authentication.getName())
@@ -68,7 +70,8 @@ public class TokenProvider implements Serializable {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
-        final String email = getUsernameFromToken(token);
+        final String email = getEmailFromToken(token);
+        System.out.println("hola esto es una prueba de email"+ email);
         return (email.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 

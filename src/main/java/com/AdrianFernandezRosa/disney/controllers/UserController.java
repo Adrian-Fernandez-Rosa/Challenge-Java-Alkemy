@@ -42,18 +42,23 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> autenticarse(@RequestBody LoginUser loginUser) throws AuthenticationException {
 
+
+        System.out.println(loginUser.getPassword());
         final Authentication authentication = authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
+
                         loginUser.getEmail(),
                         loginUser.getPassword()
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = jwtTokenUtil.generateToken(authentication);
-        return ResponseEntity.ok(new AuthToken());
+
+        return ResponseEntity.ok(new AuthToken(token));
     }
 
 
-
-
+    public PasswordEncoder getEncoder() {
+        return encoder;
+    }
 }

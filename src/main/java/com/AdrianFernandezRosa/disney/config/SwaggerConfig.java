@@ -72,8 +72,8 @@ public class SwaggerConfig {
                 "1.0",
                 "http://localhost/terms",
                 new Contact("Adrián Fernández Rosa","https://www.linkedin.com/in/adrian-fernandez-rosa/","adrianfr2011@gmail.com"),
-                "Alkemy",
-                "Alkemy",
+                "AlkemyAFR",
+                "AlkemyAFR",
                 Collections.emptyList());
     }
 

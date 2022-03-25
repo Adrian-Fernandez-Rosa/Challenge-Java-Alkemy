@@ -24,14 +24,22 @@ public class Personaje {
     public Personaje() {
     }
 
-    public Personaje(Long id, Imagen imagen, String nombre, Integer edad, Double peso, String historia, List<Pelicula> peliculas) {
-        this.id = id;
+    public Personaje( Imagen imagen, String nombre, Integer edad, Double peso, String historia, List<Pelicula> peliculas) {
+
         this.imagen = imagen;
         this.nombre = nombre;
         this.edad = edad;
         this.peso = peso;
         this.historia = historia;
         this.peliculas = peliculas;
+    }
+
+    public Personaje(Imagen imagen, String nombre, Integer edad, Double peso, String historia) {
+        this.imagen = imagen;
+        this.nombre = nombre;
+        this.edad = edad;
+        this.peso = peso;
+        this.historia = historia;
     }
 
     public Long getId() {

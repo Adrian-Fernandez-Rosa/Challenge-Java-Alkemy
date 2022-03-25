@@ -10,6 +10,7 @@ public class AuthToken {
 
     public AuthToken(String token){
         this.token = token;
+        System.out.println("mi token"+this.token);
     }
 
     public String getToken() {
