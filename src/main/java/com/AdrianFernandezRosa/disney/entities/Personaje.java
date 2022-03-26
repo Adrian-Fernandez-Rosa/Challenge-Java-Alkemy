@@ -1,7 +1,8 @@
 package com.AdrianFernandezRosa.disney.entities;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Personaje {
@@ -9,22 +10,27 @@ public class Personaje {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_personaje")
     private Long id;
 
     @OneToOne
     private Imagen imagen;
+    @Column (unique = true, nullable = false )
     private String nombre;
+
     private Integer edad;
+    @Column (nullable = false)
     private Double peso;
+    @Column (length = 2048)
     private String historia;
 
-    @OneToMany
-    private List<Pelicula> peliculas;
+    @ManyToMany(mappedBy = "personajesAsociados", fetch = FetchType.EAGER)
+    private Set<Pelicula> peliculas= new HashSet<>();
 
     public Personaje() {
     }
 
-    public Personaje( Imagen imagen, String nombre, Integer edad, Double peso, String historia, List<Pelicula> peliculas) {
+    public Personaje(Imagen imagen, String nombre, Integer edad, Double peso, String historia, Set<Pelicula> peliculas) {
 
         this.imagen = imagen;
         this.nombre = nombre;
@@ -90,11 +96,11 @@ public class Personaje {
         this.historia = historia;
     }
 
-    public List<Pelicula> getPeliculas() {
+    public Set<Pelicula> getPeliculas() {
         return peliculas;
     }
 
-    public void setPeliculas(List<Pelicula> peliculas) {
+    public void setPeliculas(Set<Pelicula> peliculas) {
         this.peliculas = peliculas;
     }
 }

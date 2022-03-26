@@ -1,8 +1,14 @@
 package com.AdrianFernandezRosa.disney.dto;
 
+
+
+
 public class LoginUser {
 
+
+
     private String email;
+
     private String password;
 
     public String getEmail() {

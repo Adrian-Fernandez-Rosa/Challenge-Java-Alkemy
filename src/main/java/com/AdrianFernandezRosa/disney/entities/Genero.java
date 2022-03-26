@@ -8,7 +8,8 @@ import java.util.List;
 public class Genero implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_genero" )
     private Long id;
     private String nombre;
 
