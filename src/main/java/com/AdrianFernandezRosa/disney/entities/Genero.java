@@ -2,7 +2,9 @@ package com.AdrianFernandezRosa.disney.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Genero implements Serializable {
@@ -16,17 +18,24 @@ public class Genero implements Serializable {
     @OneToOne
     private Imagen imagen;
 
+    /*
+    (extracto de google para justificar manytomany)
+    ¿Cuántos géneros puede tener una película?
+    Y es que, los géneros cinematográficos no son exclusivos y,
+     por lo tanto, una obra puede estar catalogada en dos o más géneros
+      a la vez dependiendo de las características que se tomen en cuenta.
+     */
 
-    @OneToMany
-    private List<Pelicula> peliculasAsociadas;
+    @ManyToMany(mappedBy = "generos", fetch = FetchType.EAGER)
+    private Set<Pelicula> peliculasAsociadasGenero = new HashSet<>();
 
     public Genero() {
     }
 
-    public Genero(String nombre, Imagen imagen, List<Pelicula> peliculasAsociadas) {
+    public Genero(String nombre, Imagen imagen, Set<Pelicula> peliculasAsociadasGenero) {
         this.nombre = nombre;
         this.imagen = imagen;
-        this.peliculasAsociadas = peliculasAsociadas;
+        this.peliculasAsociadasGenero = peliculasAsociadasGenero;
     }
 
     public Long getId() {
@@ -53,11 +62,11 @@ public class Genero implements Serializable {
         this.imagen = imagen;
     }
 
-    public List<Pelicula> getPeliculasAsociadas() {
-        return peliculasAsociadas;
+    public Set<Pelicula> getPeliculasAsociadasGenero() {
+        return peliculasAsociadasGenero;
     }
 
-    public void setPeliculasAsociadas(List<Pelicula> peliculasAsociadas) {
-        this.peliculasAsociadas = peliculasAsociadas;
+    public void setPeliculasAsociadasGenero(Set<Pelicula> peliculasAsociadas) {
+        this.peliculasAsociadasGenero = peliculasAsociadas;
     }
 }

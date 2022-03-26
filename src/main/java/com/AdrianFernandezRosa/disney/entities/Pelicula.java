@@ -23,6 +23,12 @@ public class Pelicula {
             ,inverseJoinColumns = {@JoinColumn(name="id_personaje")})
     private Set<Personaje> personajesAsociados= new HashSet<>();
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "pelicula_genero"
+            ,joinColumns = {@JoinColumn(name="id_pelicula")}
+            ,inverseJoinColumns = {@JoinColumn(name = "id_genero")})
+    private Set<Genero> generos = new HashSet<>();
+
     public Pelicula() {
     }
 
