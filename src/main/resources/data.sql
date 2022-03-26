@@ -26,15 +26,3 @@ INSERT INTO `dbdisney`.`pelicula` (`id_pelicula`, `calificacion`, `fecha_creacio
 -- película_género:
  INSERT INTO `dbdisney`.`pelicula_genero` (`id_pelicula`, `id_genero`) VALUES (50505050, 50010);
 
-
-
--- imagen pelicula y personaje
-/*
-INSERT INTO `dbdisney`.`imagen` (`id`, `urli`) VALUES ('501', 'https://i0.wp.com/hipertextual.com/wp-content/uploads/2021/02/orig_234330.jpg');
-INSERT INTO `dbdisney`.`imagen` (`id`, `urli`) VALUES ('500', 'https://imagenes.elpais.com/resizer/r0DM4kylqGwYosNN8yzgAas-64c=/1960x1103/cloudfront-eu-central-1.images.arcpublishing.com/prisa/2OSN42W7ZYH5F4KXCNBD64CUKU.jpg');
-
-INSERT INTO `dbdisney`.`pelicula` (`id`, `calificacion`, `fecha_creacion`, `titulo`, `imagen_id`) VALUES ('505', '5', '1995-01-29', 'SUPERMAN', '501');
-INSERT INTO `dbdisney`.`personaje`  VALUES ('500', '19', 'habia una vez', 'superman', '90',500);
-INSERT INTO `dbdisney`.`pelicula_personajes_asociados` (`pelicula_id`, `personajes_asociados_id`) VALUES ('505', '500');
-
- */

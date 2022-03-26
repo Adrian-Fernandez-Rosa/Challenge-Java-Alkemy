@@ -15,16 +15,16 @@ import java.util.List;
 public class DisneyApplication {
 
 	public static void main(String[] args) {
-		 SpringApplication.run(DisneyApplication.class, args);
+		// SpringApplication.run(DisneyApplication.class, args);
 
 
 		//test fast bizarro
-		/*
+
 		ApplicationContext context = SpringApplication.run(DisneyApplication.class, args);
 		PersonajeRepository pRepository = context.getBean(PersonajeRepository.class);
 
 		PeliculaRepository peliculaRepository = context.getBean(PeliculaRepository.class);
-		Pelicula peli = peliculaRepository.findById(505L).get();
+		Pelicula peli = peliculaRepository.findById(50505050L).get();
 
 		System.out.println("Peli id "+peli.getId());
 
@@ -32,10 +32,13 @@ public class DisneyApplication {
 		peliculas.add(peli);
 
 
-		 */
-	//	List<Personaje> personajes = pRepository.findByPeliculasIn(peliculas);
-	//	System.out.println("personajes size "+ personajes.size()+ " peliculas size "+peliculas.size());
 
+
+
+		List<Personaje> personajes = pRepository.findByPeliculasIn(peliculas);
+		System.out.println("personajes size "+ personajes.size()+ " peliculas size "+peliculas.size());
+
+		System.out.println(personajes.get(0).getNombre());
 	}
 
 }

@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 public interface PersonajeRepository extends JpaRepository<Personaje, Long> {
-/*
+
     Boolean existsByNombre(String nombre);
 
     List<Personaje> findByPeliculasIn(Collection<Pelicula> peliculas);
@@ -19,5 +19,5 @@ public interface PersonajeRepository extends JpaRepository<Personaje, Long> {
    List<Personaje> findByNombreAndEdad(String nombre, Integer edad);
 
 
- */
+
 }
