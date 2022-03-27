@@ -39,6 +39,33 @@ public class DisneyApplication {
 		System.out.println("personajes size "+ personajes.size()+ " peliculas size "+peliculas.size());
 
 		System.out.println(personajes.get(0).getNombre());
+
+		List<Personaje> personajes2 = pRepository.findByPeliculasId(50505050L);
+
+		 System.out.println(personajes2.size());
+
+		System.out.println(personajes2.get(0).getHistoria());
+
+		//prueba
+
+		List<Personaje> searchAllFiltros = pRepository.findByNombreStartingWithAndEdadAndPeso("super",23,90D);
+
+		System.out.println(searchAllFiltros.size());
+
+		//prueba starting
+
+		List<Personaje> personaje = pRepository.findByNombreStartingWith("super");
+
+		System.out.println(personaje.get(0).getNombre());
+
+		// prueba starting dual
+		System.out.println("---------------------------------------------");
+
+		List<Personaje> personajesdual = pRepository.findByNombreStartingWithAndPeliculasId("super",50505050L);
+
+		System.out.println(personajesdual.get(0).getImagen().getUrlI());
+
+
 	}
 
 }

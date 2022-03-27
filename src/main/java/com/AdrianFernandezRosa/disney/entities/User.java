@@ -13,10 +13,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column( unique = true)
+    @Column( unique = true, nullable = false)
     private String email;
     @JsonIgnore
     private String password;
+    @Column(nullable = false)
     private String nombreCompleto;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

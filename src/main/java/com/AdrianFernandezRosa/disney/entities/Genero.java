@@ -13,6 +13,7 @@ public class Genero implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_genero" )
     private Long id;
+    @Column(unique = true, nullable = false)
     private String nombre;
 
     @OneToOne

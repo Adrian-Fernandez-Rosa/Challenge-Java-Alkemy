@@ -9,6 +9,7 @@ public class Imagen {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_imagen")
     private Long id;
+    @Column(nullable = false)
     private String urlI;
 
     public Imagen() {

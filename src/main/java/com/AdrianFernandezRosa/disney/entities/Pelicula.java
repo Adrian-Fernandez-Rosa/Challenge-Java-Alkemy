@@ -12,9 +12,13 @@ public class Pelicula {
     private Long id;
     @OneToOne
     private Imagen imagen;
+
+    @Column(unique = true)
     private String titulo;
+
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
+
     private Integer calificacion;
 
     @ManyToMany(fetch = FetchType.EAGER)

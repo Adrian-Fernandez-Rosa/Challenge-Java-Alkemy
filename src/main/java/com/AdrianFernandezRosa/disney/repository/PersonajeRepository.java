@@ -12,11 +12,44 @@ public interface PersonajeRepository extends JpaRepository<Personaje, Long> {
 
     Boolean existsByNombre(String nombre);
 
+    //SINGLE:
+
+    List<Personaje> findByNombre(String nombre);
+
+    List<Personaje> findByNombreStartingWith(String nombre);
+
+    List<Personaje> findByEdad(Integer edad);
+
+    List<Personaje> findByPeliculasId(Long id);
+
+    //Double:
+
+    List<Personaje> findByNombreStartingWithAndEdad(String nombre, Integer edad);
+
+    List<Personaje> findByNombreStartingWithAndPeso(String nombre, Double peso);
+
+    List<Personaje> findByEdadAndPeso(Integer edad, Double peso);
+
+   List<Personaje> findByNombreStartingWithAndPeliculasId(String nombre, Long id);
+
+   List<Personaje> findByPesoAndPeliculasId(Double Peso, Long Id);
+
     List<Personaje> findByPeliculasIn(Collection<Pelicula> peliculas);
 
-  List<Personaje> findByNombreAndEdadAndPeso(String nombre, Integer edad, Double peso);
+  // three:
+  List<Personaje> findByNombreStartingWithAndEdadAndPeso(String nombre, Integer edad, Double peso);
 
-   List<Personaje> findByNombreAndEdad(String nombre, Integer edad);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
