@@ -2,7 +2,6 @@ package com.AdrianFernandezRosa.disney;
 
 import com.AdrianFernandezRosa.disney.entities.Pelicula;
 import com.AdrianFernandezRosa.disney.entities.Personaje;
-import com.AdrianFernandezRosa.disney.repository.PeliculaRepository;
 import com.AdrianFernandezRosa.disney.repository.PersonajeRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +9,10 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class DisneyApplication {
@@ -20,9 +23,91 @@ public class DisneyApplication {
 
 		//test fast bizarro
 
+
 		ApplicationContext context = SpringApplication.run(DisneyApplication.class, args);
+
+		/*PersonajeRepository pRepository = context.getBean(PersonajeRepository.class);
+
+		List<Personaje> personajes = new ArrayList<>();
+
+		String name = null;
+		Integer age = null;
+		Long movie = 50505052L; //50505052
+
+		if (name == null && age == null && movie == null){
+			personajes = pRepository.findAll();
+		}
+		if (!(name == null)){
+			personajes = pRepository.findByNombreStartingWith(name);
+		}
+		if (!(age == null)){
+			List<Personaje> auxiliarAge;
+
+			if (!personajes.isEmpty()){
+
+				Predicate<Personaje> filter = personaje -> Objects.equals(personaje.getEdad(), age);
+
+				System.out.println(personajes.size());
+
+				personajes = personajes.stream().filter(filter).collect(Collectors.toList());
+
+				System.out.println(personajes.size());
+
+			} else {
+				personajes = pRepository.findByEdad(age);
+				//personajes = Stream.concat(personajes.stream(), auxiliarAge.stream() ).collect(Collectors.toList());
+			}
+
+		}
+		if (!(movie == null)){
+
+			if (personajes.isEmpty()){
+
+				personajes = pRepository.findByPeliculasId(movie);
+			}else {
+
+				Predicate<Personaje> filter = personaje -> {
+
+					return personaje.getPeliculas().stream().anyMatch(p -> p.getId().equals(movie));
+				};
+
+				System.out.println("estamos en movie:");
+				System.out.println(personajes.size());
+				personajes = personajes.stream().filter(filter).collect(Collectors.toList());
+				System.out.println(personajes.size());
+
+
+			}
+
+
+		}
+
+
+		personajes.forEach(e -> System.out.println(e.getNombre()+ " "+ e.getEdad()));
+
+		 personajes.get(0).getPeliculas().forEach(e -> System.out.println(e.getTitulo()));
+
+		 */
+
+		/*
+		//test básico ver si agrega a arraylist
+
+		 */
+
+
+
+		/*
 		PersonajeRepository pRepository = context.getBean(PersonajeRepository.class);
 
+		PersonajeDao pDao = context.getBean(PersonajeDao.class);
+		List<Personaje> personajes = pDao.findAllFilter("superman",23);
+
+		System.out.println(personajes.get(0).getNombre());
+*/
+
+
+
+/*
 		PeliculaRepository peliculaRepository = context.getBean(PeliculaRepository.class);
 		Pelicula peli = peliculaRepository.findById(50505050L).get();
 
@@ -48,9 +133,9 @@ public class DisneyApplication {
 
 		//prueba
 
-		List<Personaje> searchAllFiltros = pRepository.findByNombreStartingWithAndEdadAndPeso("super",23,90D);
+		//List<Personaje> searchAllFiltros = pRepository.findByNombreStartingWithAndEdadAndPeso("super",23,90D);
 
-		System.out.println(searchAllFiltros.size());
+	//	System.out.println(searchAllFiltros.size());
 
 		//prueba starting
 
@@ -65,7 +150,14 @@ public class DisneyApplication {
 
 		System.out.println(personajesdual.get(0).getImagen().getUrlI());
 
+		System.out.println("---------------------------------------------");
+		System.out.println("Prueba isnotnull");
+	//	List<Personaje> nombrenotnull = pRepository.findByNombreStartingWithAndEdadIsNotNullAndPeso("",null, 90D);
 
+	//	System.out.println(nombrenotnull.size());
+
+
+ */
 	}
 
 }
