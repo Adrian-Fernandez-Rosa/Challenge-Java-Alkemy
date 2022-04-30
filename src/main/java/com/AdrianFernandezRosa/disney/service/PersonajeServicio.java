@@ -1,5 +1,6 @@
 package com.AdrianFernandezRosa.disney.service;
 
+import com.AdrianFernandezRosa.disney.dto.PersonajeAux;
 import com.AdrianFernandezRosa.disney.entities.Personaje;
 
 import java.util.List;
@@ -9,13 +10,19 @@ public interface PersonajeServicio {
 
     List<Personaje> findAll();
 
-    Optional<Personaje> findByNombre(String name);
+    List<Personaje> findByNombreStartingWith(String name);
 
-    List<Personaje> findByEdad(Integer edad);
+    List<Personaje> findByEdad(Integer age);
 
-    Personaje save(Personaje personaje);
+    List<PersonajeAux> findByAllParameters(String name, Integer age, Long idMovie);
 
+    void save(Personaje personaje) throws Exception;
 
+    List<Personaje> findByPeliculasId(Long movie);
+
+    void modificarPersonaje(Personaje personaje) throws Exception;
+
+    Boolean deleteById(Long id);
 
 
 

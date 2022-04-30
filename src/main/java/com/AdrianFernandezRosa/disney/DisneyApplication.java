@@ -1,13 +1,16 @@
 package com.AdrianFernandezRosa.disney;
 
+import com.AdrianFernandezRosa.disney.entities.Imagen;
 import com.AdrianFernandezRosa.disney.entities.Pelicula;
 import com.AdrianFernandezRosa.disney.entities.Personaje;
 import com.AdrianFernandezRosa.disney.repository.PersonajeRepository;
+import com.AdrianFernandezRosa.disney.service.PersonajeServicio;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -25,6 +28,18 @@ public class DisneyApplication {
 
 
 		ApplicationContext context = SpringApplication.run(DisneyApplication.class, args);
+
+	/*	PersonajeServicio personajeServicio = context.getBean(PersonajeServicio.class);
+
+		try {
+
+			Personaje p1 = new Personaje(50002L, new Imagen("vamo.jpg"),"superboooo", 32,65D,"superpositivo"
+			,null);
+			personajeServicio.save(p1);
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}*/
 
 		/*PersonajeRepository pRepository = context.getBean(PersonajeRepository.class);
 

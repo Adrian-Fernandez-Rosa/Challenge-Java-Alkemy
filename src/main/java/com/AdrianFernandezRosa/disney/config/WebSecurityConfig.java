@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/register","/auth/login").permitAll()
+                .antMatchers("/auth/register","/auth/login", "/characters").permitAll() //si hay tiempo modificar
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling() //nos permite agregar métodos/objetos para sobreescribir la gestión de errores.

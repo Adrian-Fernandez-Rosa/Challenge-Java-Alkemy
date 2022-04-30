@@ -14,7 +14,7 @@ public class Personaje implements Serializable {
     @Column(name = "id_personaje")
     private Long id;
 
-    @OneToOne
+    @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Imagen imagen;
     @Column (unique = true, nullable = false )
     private String nombre;
@@ -26,6 +26,7 @@ public class Personaje implements Serializable {
     private String historia;
 
     @ManyToMany(mappedBy = "personajesAsociados", fetch = FetchType.EAGER)
+    @Column(updatable = false)
     private Set<Pelicula> peliculas= new HashSet<>();
 
     public Personaje() {
