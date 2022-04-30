@@ -64,7 +64,7 @@ public class PersonajeController {
             personajeServicio.modificarPersonaje(personaje);
             return ResponseEntity.ok("Personaje actualizado exitosamente");
         }catch (Exception e){
-            return  ResponseEntity.badRequest().build();
+            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
     }
