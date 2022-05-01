@@ -18,7 +18,7 @@ public class Pelicula {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pelicula")
     private Long id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Imagen imagen;
 
     @Column(unique = true)
@@ -29,11 +29,11 @@ public class Pelicula {
 
     private Integer calificacion;
 
-    @ManyToMany( fetch = FetchType.LAZY)
+    @ManyToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name="pelicula_personaje"
             ,joinColumns = {@JoinColumn(name="id_pelicula")}
             ,inverseJoinColumns = {@JoinColumn(name="id_personaje")})
-     @JsonIgnoreProperties(value="peliculas")
+    // @JsonIgnoreProperties(value="peliculas")
   //  @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
       // @JsonIgnore //con esto detiene el bucle pero se complica luego cuando quiera mostrar películas
     private Set<Personaje> personajesAsociados= new HashSet<>();

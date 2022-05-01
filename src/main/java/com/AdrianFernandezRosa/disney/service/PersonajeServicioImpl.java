@@ -48,7 +48,7 @@ public class PersonajeServicioImpl implements PersonajeServicio {
 
 
 
-    @Override //refactorizar usando solid
+    @Override //refactorizar aplicando solid
     public List<PersonajeAux> findByAllParameters(String name, Integer age, Long idMovie) {
 
         List<Personaje> personajes = new ArrayList<>();
@@ -83,7 +83,6 @@ public class PersonajeServicioImpl implements PersonajeServicio {
 
                 personajes = personajes.stream().filter(filter).collect(Collectors.toList());
 
-
             }else {
                 personajes = pRepository.findByPeliculasId(idMovie);
             }
@@ -107,20 +106,38 @@ public class PersonajeServicioImpl implements PersonajeServicio {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class})
-    public void save(Personaje personaje) throws Exception {
+    public Personaje save(Personaje personaje) throws Exception {
 
      //   System.out.println(personajeRepository.existsPersonajeByNombreIgnoreCase("bAtmAn"));
+
         validarSave(personaje);
 
-       pRepository.save(personaje);
+     return  pRepository.save(personaje);
     }
 
     public void validarSave(Personaje personaje) throws Exception {
 
-        if (personaje.getId()!=null || pRepository.existsPersonajeByNombreIgnoreCase(personaje.getNombre()) ){
-            log.warn("Este personaje ya existe");
-            throw new Exception("Ya existe este personaje");
+        if(personaje.getNombre() == null){
+            throw new Exception("El nombre no puede ser nulo");
         }
+
+        if ( pRepository.existsPersonajeByNombreIgnoreCase(personaje.getNombre()) ){
+            log.warn("Este personaje ya existe");
+            throw new Exception("Ya existe un personaje con este nombre");
+        }
+
+        if(personaje.getEdad() == null){
+            throw new Exception("La edad no puede ser nula");
+        }
+
+        if(personaje.getPeso() == null){
+            throw new Exception("El peso no puede ser nulo");
+        }
+
+        if(personaje.getHistoria() == null){
+            throw new Exception("La historia no puede ser nula");
+        }
+
 
     }
 

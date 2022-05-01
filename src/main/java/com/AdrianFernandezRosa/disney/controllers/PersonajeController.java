@@ -25,9 +25,20 @@ public class PersonajeController {
         this.personajeServicio = personajeServicio;
     }
 
-    @PostMapping("/")
+    @PostMapping("/characters/create")
     public ResponseEntity<Personaje> crear(@RequestBody Personaje personaje){
-        return null;
+
+        if(personaje.getId() != null){
+            log.warn("Esta intentando crear un personaje que ya existe");
+            return ResponseEntity.badRequest().build();
+        }
+        try {
+            return ResponseEntity.ok(personajeServicio.save(personaje));
+        }catch (Exception e){
+            log.warn(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
     }
 
     @GetMapping("/characters")
