@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -36,7 +37,7 @@ public class PersonajeController {
             return ResponseEntity.ok(personajeServicio.save(personaje));
         }catch (Exception e){
             log.warn(e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.badRequest().build();
         }
 
     }
@@ -54,12 +55,7 @@ public class PersonajeController {
     }
 
 
-    @GetMapping("/a")
-    public ResponseEntity<List<PersonajeAux>> listadoPersonaje(){
-        System.out.println("*****************************************************************");
 
-        return new ResponseEntity<>(new ArrayList<PersonajeAux>(), HttpStatus.OK);
-    }
 
     /**
      * Actualiza el personaje con los atributos enviados sin afectar a los que no actualiza
@@ -80,7 +76,30 @@ public class PersonajeController {
         }
     }
 
+    /**
+     * Obtener personaje por id (detalle)
+     * @param id
+     * @return personaje
+     */
+    @GetMapping("/characters/{id}")
+    public ResponseEntity<Personaje> detallePersonaje(@PathVariable("id") Long id){
 
+        try {
+            System.out.println(id);
+            if(id==null ){
+                log.warn("El id no puede ser nulo");
+                return ResponseEntity.badRequest().build();
+            }
+
+            return ResponseEntity.ok(personajeServicio.findById(id));
+        }catch (NoSuchElementException e){
+
+            return ResponseEntity.notFound().build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+
+    }
 
 
 }

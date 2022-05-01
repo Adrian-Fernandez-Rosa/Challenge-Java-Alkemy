@@ -12,10 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -47,6 +44,18 @@ public class PersonajeServicioImpl implements PersonajeServicio {
     }
 
 
+    @Override
+    @Transactional(readOnly = true)
+    public Personaje findById(Long id) {
+        Optional<Personaje> personaje = pRepository.findById(id);
+
+        if (personaje.isPresent()){
+            return personaje.get();
+        }else {
+            throw new NoSuchElementException("No se encontro el personaje");
+
+        }
+    }
 
     @Override //refactorizar aplicando solid
     public List<PersonajeAux> findByAllParameters(String name, Integer age, Long idMovie) {

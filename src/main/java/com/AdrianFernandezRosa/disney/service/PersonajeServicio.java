@@ -16,6 +16,8 @@ public interface PersonajeServicio {
 
     List<PersonajeAux> findByAllParameters(String name, Integer age, Long idMovie);
 
+    Personaje  findById(Long id);
+
     Personaje save(Personaje personaje) throws Exception;
 
     List<Personaje> findByPeliculasId(Long movie);
