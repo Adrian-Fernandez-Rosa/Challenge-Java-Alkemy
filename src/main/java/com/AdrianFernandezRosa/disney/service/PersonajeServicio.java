@@ -20,7 +20,7 @@ public interface PersonajeServicio {
 
     List<Personaje> findByPeliculasId(Long movie);
 
-    void modificarPersonaje(Personaje personaje) throws Exception;
+    Personaje modificarPersonaje(Personaje personaje) throws Exception;
 
     Boolean deleteById(Long id);
 

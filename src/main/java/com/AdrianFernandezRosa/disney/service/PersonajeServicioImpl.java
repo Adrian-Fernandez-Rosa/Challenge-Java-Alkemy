@@ -134,16 +134,20 @@ public class PersonajeServicioImpl implements PersonajeServicio {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class})
-    public void modificarPersonaje(Personaje personaje) throws Exception{
+    public Personaje modificarPersonaje(Personaje personaje) throws Exception{
 
+        if (personaje.getId() == null){
+            throw new NoSuchElementException("ERROR id no encontrado!!");
+        }
          Personaje pBD = pRepository.getById(personaje.getId());
          if (pBD == null){
              throw new NoSuchElementException("El personaje no fue encontrado");
          }
-        pBD = com.AdrianFernandezRosa.disney.util.personajeUtils.clonar(pBD,personaje);
+        com.AdrianFernandezRosa.disney.util.personajeUtils.clonar(pBD,personaje);
 
         try {
              pRepository.save(pBD);
+             return pBD;
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }

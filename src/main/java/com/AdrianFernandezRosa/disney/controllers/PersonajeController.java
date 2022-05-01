@@ -56,17 +56,20 @@ public class PersonajeController {
      * @return
      */
     // TODO: personalizar error en controlador de errores
+    // TODO: La imagen Debería ser un multipartFile para luego gestionarlo con api imgur
     @PutMapping("/characters/{id}")
-    public ResponseEntity<String> update(@PathVariable("id") Long id,@RequestBody Personaje personaje){
+    public ResponseEntity<Personaje> update(@PathVariable("id") Long id,@RequestBody Personaje personaje){
 
         try {
             personaje.setId(id);
-            personajeServicio.modificarPersonaje(personaje);
-            return ResponseEntity.ok("Personaje actualizado exitosamente");
-        }catch (Exception e){
-            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
 
+            return ResponseEntity.ok(personajeServicio.modificarPersonaje(personaje));
+        }catch (Exception e){
+            return  ResponseEntity.badRequest().build();
+        }
     }
+
+
+
 
 }

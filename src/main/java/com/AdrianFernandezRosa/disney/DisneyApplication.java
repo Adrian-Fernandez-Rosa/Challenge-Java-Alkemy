@@ -29,6 +29,8 @@ public class DisneyApplication {
 
 		ApplicationContext context = SpringApplication.run(DisneyApplication.class, args);
 
+
+
 	/*	PersonajeServicio personajeServicio = context.getBean(PersonajeServicio.class);
 
 		try {

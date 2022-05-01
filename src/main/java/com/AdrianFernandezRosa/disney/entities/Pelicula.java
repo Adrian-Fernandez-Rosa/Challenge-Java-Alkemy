@@ -1,9 +1,17 @@
 package com.AdrianFernandezRosa.disney.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
 public class Pelicula {
 
     @Id
@@ -21,13 +29,16 @@ public class Pelicula {
 
     private Integer calificacion;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany( fetch = FetchType.LAZY)
     @JoinTable(name="pelicula_personaje"
             ,joinColumns = {@JoinColumn(name="id_pelicula")}
             ,inverseJoinColumns = {@JoinColumn(name="id_personaje")})
+     @JsonIgnoreProperties(value="peliculas")
+  //  @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+      // @JsonIgnore //con esto detiene el bucle pero se complica luego cuando quiera mostrar películas
     private Set<Personaje> personajesAsociados= new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "pelicula_genero"
             ,joinColumns = {@JoinColumn(name="id_pelicula")}
             ,inverseJoinColumns = {@JoinColumn(name = "id_genero")})
@@ -84,6 +95,8 @@ public class Pelicula {
         this.calificacion = calificacion;
     }
 
+
+    @JsonBackReference
     public Set<Personaje> getPersonajesAsociados() {
         return personajesAsociados;
     }
