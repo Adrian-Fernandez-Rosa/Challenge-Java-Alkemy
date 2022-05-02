@@ -24,7 +24,7 @@ public interface PersonajeServicio {
 
     Personaje modificarPersonaje(Personaje personaje) throws Exception;
 
-    Boolean deleteById(Long id);
+   void deleteById(Long id) throws Exception;
 
 
 

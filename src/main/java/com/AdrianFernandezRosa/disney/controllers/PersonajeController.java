@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -97,6 +96,20 @@ public class PersonajeController {
             return ResponseEntity.notFound().build();
         }catch (Exception e){
             return ResponseEntity.badRequest().build();
+        }
+
+    }
+
+    @DeleteMapping("/characters/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        log.info("Solicitud REST para eliminar un personaje existente");
+
+        try {
+            this.personajeServicio.deleteById(id);
+            return new ResponseEntity<>("Personaje borrado con éxito.", HttpStatus.NO_CONTENT);
+        }catch (Exception e){
+
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
 
     }

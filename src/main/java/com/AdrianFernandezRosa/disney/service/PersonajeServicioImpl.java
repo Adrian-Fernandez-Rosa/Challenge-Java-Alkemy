@@ -185,7 +185,19 @@ public class PersonajeServicioImpl implements PersonajeServicio {
     }
 
     @Override
-    public Boolean deleteById(Long id) {
-        return null;
+    public void deleteById(Long id) throws Exception {
+
+        if(id == null || id < 0 || id == 0){
+            log.warn("Ha insertado un id erroneo");
+            throw new Exception("Ha insertado un id erroneo");
+        }
+        try {
+            pRepository.deleteById(id);
+        } catch (Exception e) {
+            log.error("Error delete ");
+            throw new Exception( e.getCause());
+        }
+
+
     }
 }
