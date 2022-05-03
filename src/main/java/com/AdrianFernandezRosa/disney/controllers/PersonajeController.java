@@ -100,6 +100,7 @@ public class PersonajeController {
 
     }
 
+    //TODO: No devuelve mensaje
     @DeleteMapping("/characters/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         log.info("Solicitud REST para eliminar un personaje existente");
@@ -108,7 +109,7 @@ public class PersonajeController {
             this.personajeServicio.deleteById(id);
             return new ResponseEntity<>("Personaje borrado con éxito.", HttpStatus.NO_CONTENT);
         }catch (Exception e){
-
+            log.error(e.getCause().toString());
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
 
