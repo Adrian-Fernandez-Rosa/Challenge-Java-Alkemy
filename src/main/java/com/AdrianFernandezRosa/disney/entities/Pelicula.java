@@ -36,6 +36,7 @@ public class Pelicula {
     // @JsonIgnoreProperties(value="peliculas")
   //  @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
       // @JsonIgnore //con esto detiene el bucle pero se complica luego cuando quiera mostrar películas
+    @Column(updatable = false)
     private Set<Personaje> personajesAsociados= new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)

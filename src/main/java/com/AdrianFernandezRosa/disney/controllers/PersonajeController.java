@@ -69,7 +69,7 @@ public class PersonajeController {
         try {
             personaje.setId(id);
 
-            return ResponseEntity.ok(personajeServicio.modificarPersonaje(personaje));
+            return ResponseEntity.ok(personajeServicio.editarPersonaje(personaje));
         }catch (Exception e){
             return  ResponseEntity.badRequest().build();
         }
@@ -107,10 +107,11 @@ public class PersonajeController {
 
         try {
             this.personajeServicio.deleteById(id);
-            return new ResponseEntity<>("Personaje borrado con éxito.", HttpStatus.NO_CONTENT);
+            return ResponseEntity.accepted().body("Personaje borrado con éxito");
+
         }catch (Exception e){
             log.error(e.getCause().toString());
-            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().body(e.getCause().toString());
         }
 
     }

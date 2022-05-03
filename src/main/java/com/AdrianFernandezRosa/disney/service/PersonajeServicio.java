@@ -4,7 +4,6 @@ import com.AdrianFernandezRosa.disney.dto.PersonajeAux;
 import com.AdrianFernandezRosa.disney.entities.Personaje;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface PersonajeServicio {
 
@@ -22,7 +21,7 @@ public interface PersonajeServicio {
 
     List<Personaje> findByPeliculasId(Long movie);
 
-    Personaje modificarPersonaje(Personaje personaje) throws Exception;
+    Personaje editarPersonaje(Personaje personaje) throws Exception;
 
    void deleteById(Long id) throws Exception;
 

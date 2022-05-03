@@ -160,7 +160,7 @@ public class PersonajeServicioImpl implements PersonajeServicio {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class})
-    public Personaje modificarPersonaje(Personaje personaje) throws Exception{
+    public Personaje editarPersonaje(Personaje personaje) throws Exception{
 
         if (personaje.getId() == null){
             throw new NoSuchElementException("ERROR id no encontrado!!");
