@@ -52,7 +52,7 @@ public class PersonajeServicioImpl implements PersonajeServicio {
         if (personaje.isPresent()){
             return personaje.get();
         }else {
-            throw new NoSuchElementException("No se encontro el personaje");
+            throw new NoSuchElementException("No se encontró el personaje");
 
         }
     }
@@ -100,7 +100,7 @@ public class PersonajeServicioImpl implements PersonajeServicio {
 
     }
 
-    public List<PersonajeAux> mapper(List<Personaje> personajes){
+    private List<PersonajeAux> mapper(List<Personaje> personajes){
         List<PersonajeAux> pAux = new ArrayList<>();
 
 
@@ -115,7 +115,7 @@ public class PersonajeServicioImpl implements PersonajeServicio {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class})
-    public Personaje save(Personaje personaje) throws Exception {
+    public Personaje save(Personaje personaje) throws Exception { //crea personaje
 
      //   System.out.println(personajeRepository.existsPersonajeByNombreIgnoreCase("bAtmAn"));
 

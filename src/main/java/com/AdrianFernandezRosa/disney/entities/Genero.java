@@ -1,5 +1,8 @@
 package com.AdrianFernandezRosa.disney.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -7,7 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Genero implements Serializable {
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
+public class Genero  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +31,9 @@ public class Genero implements Serializable {
       a la vez dependiendo de las características que se tomen en cuenta.
      */
 
+
     @ManyToMany(mappedBy = "generos", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("generos")
     private Set<Pelicula> peliculasAsociadasGenero = new HashSet<>();
 
     public Genero() {
@@ -62,6 +68,7 @@ public class Genero implements Serializable {
     public void setImagen(Imagen imagen) {
         this.imagen = imagen;
     }
+
 
     public Set<Pelicula> getPeliculasAsociadasGenero() {
         return peliculasAsociadasGenero;

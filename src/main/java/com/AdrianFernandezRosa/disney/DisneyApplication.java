@@ -3,11 +3,13 @@ package com.AdrianFernandezRosa.disney;
 import com.AdrianFernandezRosa.disney.entities.Imagen;
 import com.AdrianFernandezRosa.disney.entities.Pelicula;
 import com.AdrianFernandezRosa.disney.entities.Personaje;
+import com.AdrianFernandezRosa.disney.repository.PeliculaRepository;
 import com.AdrianFernandezRosa.disney.repository.PersonajeRepository;
 import com.AdrianFernandezRosa.disney.service.PersonajeServicio;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,7 +31,22 @@ public class DisneyApplication {
 
 		ApplicationContext context = SpringApplication.run(DisneyApplication.class, args);
 
+		// PeliculaRepository repository = context.getBean(PeliculaRepository.class);
 
+		// System.out.println(repository.existsPeliculaByTituloIgnoreCase("batman CONTRAATACA"));
+/*
+		try {
+
+		//	List<Pelicula> pelis = repository.findByGenerosId(50010L, Sort.by(Sort.Direction.DESC, "FechaCreacion"));
+
+			List<Pelicula> pelis = repository.findByGenerosId(50010L,null);
+
+			pelis.forEach(pelicula -> System.out.println(pelicula.getTitulo() + " " + pelicula.getFechaCreacion()));
+		} catch (Exception e){
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+
+		}*/
 
 	/*	PersonajeServicio personajeServicio = context.getBean(PersonajeServicio.class);
 

@@ -2,10 +2,7 @@ package com.AdrianFernandezRosa.disney.entities;
 
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
@@ -14,7 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
+// @JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
+
 public class Personaje{
 
 
@@ -34,8 +32,9 @@ public class Personaje{
     @Column (length = 2048)
     private String historia;
 
-    @ManyToMany(mappedBy = "personajesAsociados",  cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "personajesAsociados",  cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Column(updatable = false)
+   // @JsonIgnoreProperties("personajesAsociados")
     private Set<Pelicula> peliculas= new HashSet<>();
 
     public Personaje() {
@@ -118,6 +117,7 @@ public class Personaje{
     }
 
 
+    // @JsonManagedReference
 
     public Set<Pelicula> getPeliculas() {
         return peliculas;

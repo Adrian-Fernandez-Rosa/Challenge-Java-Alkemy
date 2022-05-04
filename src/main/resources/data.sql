@@ -24,11 +24,11 @@ INSERT INTO `dbdisney`.alkemy_user VALUES ('500', 'adrian@adrian.com', 'adrianfe
 
 
 -- Película:
-INSERT INTO `dbdisney`.`pelicula` (`id_pelicula`, `calificacion`, `fecha_creacion`, `titulo`, `imagen_id_imagen`) VALUES (50505050, 3, '1995-01-29', 'SUPERMAN', 50002);
+INSERT INTO `dbdisney`.`pelicula` (`id_pelicula`, `calificacion`, `fecha_creacion`, `titulo`, `imagen_id_imagen`) VALUES (50505050, 3, '1995-01-29', 'SUPERMAN S', 50002);
 -- Película de batman:
-INSERT INTO `dbdisney`.`pelicula` (`id_pelicula`, `calificacion`, `fecha_creacion`, `titulo`, `imagen_id_imagen`) VALUES (50505051, 4, '1998-01-29', 'batman CONTRAATACA', 50006);
+INSERT INTO `dbdisney`.`pelicula` (`id_pelicula`, `calificacion`, `fecha_creacion`, `titulo`, `imagen_id_imagen`) VALUES (50505051, 4, '1992-01-29', 'batman CONTRAATACA', 50006);
 -- Película batichica:
-INSERT INTO `dbdisney`.`pelicula` (`id_pelicula`, `calificacion`, `fecha_creacion`, `titulo`, `imagen_id_imagen`) VALUES (50505052, 5, '2022-01-29', 'La batichica', 50008);
+INSERT INTO `dbdisney`.`pelicula` (`id_pelicula`, `calificacion`, `fecha_creacion`, `titulo`, `imagen_id_imagen`) VALUES (50505052, 5, '2022-01-29', 'batichica red', 50008);
 
 -- personaje:
  INSERT INTO `dbdisney`.`personaje`  VALUES (50002, 23, 'habia una vez', 'superman', 90,50003);
@@ -36,10 +36,10 @@ INSERT INTO `dbdisney`.`pelicula` (`id_pelicula`, `calificacion`, `fecha_creacio
  INSERT INTO `dbdisney`.`personaje`  VALUES (50004, 25, 'La más poderosa', 'batichica', 67,50007);
 
 -- película_personaje:
- INSERT INTO `dbdisney`.`pelicula_personaje` VALUES (50505050, 50002);
- INSERT INTO `dbdisney`.`pelicula_personaje` VALUES (50505051, 50003);
- -- INSERT INTO `dbdisney`.`pelicula_personaje` VALUES (50505052, 50003);
- INSERT INTO `dbdisney`.`pelicula_personaje` VALUES (50505052, 50004);
+ INSERT INTO `dbdisney`.`pelicula_personaje` VALUES (50505050, 50002); -- Película: superman, personaje: superman
+ INSERT INTO `dbdisney`.`pelicula_personaje` VALUES (50505051, 50003);  -- Película: batman CONTRAATACA, personaje: batman
+  INSERT INTO `dbdisney`.`pelicula_personaje` VALUES (50505052, 50003); -- Película: batichica, personaje: batman
+ INSERT INTO `dbdisney`.`pelicula_personaje` VALUES (50505052, 50004); -- Película: batichica, personaje: batichica
 
 -- género:
  INSERT INTO `dbdisney`.`genero` (`id_genero`, `nombre`, `imagen_id_imagen`) VALUES (50010, 'Accion', 50004);
